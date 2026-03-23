@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCaaS Global Capability Map — v1.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep-blue:   #00175A;
+  --bright-blue: #006FCF;
+  --white:       #FFFFFF;
+  --cool-gray:   #D9D9D6;
+  --bg:          #F2F4F7;
+  --surface:     #FFFFFF;
+  --surface2:    #EDF0F5;
+  --border:      rgba(0,23,90,0.10);
+  --border2:     rgba(0,23,90,0.22);
+  --text:        #00175A;
+  --muted:       #4A5570;
+  --faint:       #9CA3B5;
+  --sys-bg:      rgba(0,111,207,0.07);
+  --sys-border:  rgba(0,111,207,0.22);
+  --sys-text:    #004E9A;
+  --glo-bg:      rgba(0,23,90,0.05);
+  --glo-border:  rgba(0,23,90,0.15);
+  --glo-text:    #00175A;
+  --sub-bg:      rgba(0,111,207,0.04);
+  --sub-border:  rgba(0,111,207,0.10);
+  --uc-bg:       rgba(0,111,207,0.06);
+  --uc-border:   rgba(0,111,207,0.20);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.6;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+.site-header{background:var(--deep-blue);border-bottom:3px solid var(--bright-blue);padding:20px 36px;display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.hdr-brand{display:flex;align-items:center;gap:14px}
+.hdr-logo{width:40px;height:40px;border-radius:8px;background:var(--bright-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-logo svg{width:22px;height:22px;fill:white}
+.hdr-title{font-size:19px;font-weight:600;color:#fff;letter-spacing:-0.2px}
+.hdr-sub{font-size:12px;color:rgba(255,255,255,0.60);margin-top:2px}
+.hdr-stats{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.stat-pill{background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.20);border-radius:20px;padding:5px 14px;font-size:12px;color:rgba(255,255,255,0.80);font-family:'DM Mono',monospace}
+.stat-pill b{color:#fff;font-weight:500}
+
+/* ── LAYOUT ── */
+.shell{display:flex;height:calc(100vh - 83px)}
+
+/* ── SIDEBAR ── */
+.sidebar{width:230px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+.sb-top{padding:20px 16px 8px;font-size:10px;font-weight:600;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+.sb-search{padding:0 12px 12px}
+.sb-search input{width:100%;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--bg);outline:none;transition:border-color .15s}
+.sb-search input:focus{border-color:var(--bright-blue)}
+.sb-search input::placeholder{color:var(--faint)}
+.grp-btn{display:flex;align-items:center;gap:10px;width:100%;border:none;background:none;padding:10px 16px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;color:var(--muted);text-align:left;border-left:3px solid transparent;transition:all .12s;position:relative}
+.grp-btn:hover{background:var(--surface2);color:var(--deep-blue)}
+.grp-btn.active{background:var(--surface2);color:var(--deep-blue);font-weight:500;border-left-color:var(--bright-blue)}
+.grp-icon{font-size:14px;flex-shrink:0}
+.grp-count{margin-left:auto;font-family:'DM Mono',monospace;font-size:10px;color:var(--faint);background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1px 6px}
+.grp-btn.active .grp-count{background:var(--bright-blue);color:#fff;border-color:var(--bright-blue)}
+
+/* ── CONTENT AREA ── */
+.content{flex:1;overflow-y:auto;padding:28px 32px}
+
+/* ── GROUP HEADER ── */
+.grp-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.grp-icon-lg{width:48px;height:48px;border-radius:10px;background:var(--deep-blue);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.grp-title{font-size:20px;font-weight:600;color:var(--deep-blue);letter-spacing:-0.2px;margin-bottom:3px}
+.grp-desc{font-size:13px;color:var(--muted);line-height:1.5}
+.grp-meta{margin-left:auto;text-align:right;flex-shrink:0}
+.grp-meta-num{font-size:26px;font-weight:300;color:var(--bright-blue);font-family:'DM Mono',monospace;line-height:1}
+.grp-meta-label{font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+.grp-meta-detail{margin-top:8px;font-size:11px;color:var(--faint);font-family:'DM Mono',monospace}
+
+/* ── DOMAIN CARDS ── */
+.domains-list{display:flex;flex-direction:column;gap:10px}
+.domain-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow .15s}
+.domain-card:hover{box-shadow:0 2px 10px rgba(0,23,90,0.08)}
+.domain-head{display:flex;align-items:stretch;cursor:pointer;user-select:none}
+.domain-num{width:44px;flex-shrink:0;background:var(--deep-blue);color:rgba(255,255,255,0.65);font-family:'DM Mono',monospace;font-size:10px;display:flex;align-items:center;justify-content:center;letter-spacing:.04em}
+.domain-info{flex:1;padding:13px 16px}
+.domain-title{font-size:14px;font-weight:600;color:var(--deep-blue);margin-bottom:2px}
+.domain-cat{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:8px}
+.domain-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;font-family:'DM Mono',monospace}
+.badge-sub{background:var(--sub-bg);border:1px solid var(--sub-border);color:var(--bright-blue)}
+.badge-int{background:var(--sys-bg);border:1px solid var(--sys-border);color:var(--sys-text)}
+.badge-glo{background:var(--glo-bg);border:1px solid var(--glo-border);color:var(--glo-text)}
+.badge-uc{background:rgba(0,111,207,0.10);border:1px solid rgba(0,111,207,0.25);color:#005BAA}
+.domain-toggle{width:44px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--faint);transition:transform .2s;font-size:14px}
+.domain-card.open .domain-toggle{transform:rotate(180deg)}
+
+/* ── DOMAIN BODY ── */
+.domain-body{display:none;border-top:1px solid var(--border)}
+.domain-card.open .domain-body{display:block}
+
+/* ── USE CASE BANNER ── */
+.usecase-banner{background:var(--uc-bg);border-bottom:1px solid var(--uc-border);padding:14px 20px;display:flex;gap:12px;align-items:flex-start}
+.uc-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--bright-blue);white-space:nowrap;margin-top:1px;flex-shrink:0;font-family:'DM Mono',monospace}
+.uc-divider{width:1px;background:var(--uc-border);flex-shrink:0;align-self:stretch;margin:0 4px}
+.uc-text{font-size:12.5px;color:#1a3a6e;line-height:1.55;font-style:italic}
+
+/* ── CAPABILITY COLS ── */
+.domain-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+@media(max-width:900px){.domain-cols{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.domain-cols{grid-template-columns:1fr}}
+.domain-col{padding:16px;border-right:1px solid var(--border)}
+.domain-col:last-child{border-right:none}
+.col-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.col-title.ct-sub{color:var(--bright-blue);border-color:var(--sys-border)}
+.col-title.ct-int{color:var(--sys-text);border-color:var(--sys-border)}
+.col-title.ct-glo{color:var(--glo-text);border-color:var(--glo-border)}
+.item-list{display:flex;flex-direction:column;gap:5px}
+.item{font-size:12px;line-height:1.45;padding:6px 9px;border-radius:6px}
+.item-sub{background:var(--sub-bg);border:1px solid var(--sub-border);color:var(--text)}
+.item-int{background:var(--sys-bg);border:1px solid var(--sys-border);color:var(--sys-text)}
+.item-glo{background:var(--glo-bg);border:1px solid var(--glo-border);color:var(--glo-text)}
+
+/* ── SEARCH ── */
+.no-results{text-align:center;color:var(--faint);padding:40px;font-size:13px}
+mark{background:rgba(0,111,207,0.15);color:var(--sys-text);border-radius:2px;padding:0 2px}
+
+/* ── FOOTER ── */
+.content-footer{font-size:11px;color:var(--faint);margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:var(--cool-gray)}
+::-webkit-scrollbar-thumb{background:#AAB2C4;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--bright-blue)}
+
+/* ── SUB-CAPABILITY DETAILS ── */
+.item-sub { cursor: pointer; transition: all 0.15s; position: relative; }
+.item-sub:hover { background: rgba(0,111,207,0.10); border-color: rgba(0,111,207,0.25); }
+.item-sub .sub-name { font-weight: 500; }
+.item-sub .sub-detail { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--sub-border); }
+.item-sub.expanded .sub-detail { display: block; }
+.item-sub .sub-def-label, .item-sub .sub-uc-label { 
+    font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; 
+    color: var(--bright-blue); margin-bottom: 3px; font-family: 'DM Mono', monospace; 
+}
+.item-sub .sub-def-text, .item-sub .sub-uc-text { 
+    font-size: 11px; color: var(--muted); line-height: 1.5; margin-bottom: 8px; 
+}
+.item-sub .sub-uc-text { font-style: italic; color: #1a3a6e; }
+.item-sub .expand-hint { 
+    position: absolute; right: 8px; top: 6px; font-size: 10px; color: var(--faint); 
+    transition: transform 0.2s;
+}
+.item-sub.expanded .expand-hint { transform: rotate(180deg); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-brand">
+    <div class="hdr-logo">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+    </div>
+    <div>
+      <div class="hdr-title">CCaaS Global Capability Map</div>
+      <div class="hdr-sub">End-to-End Platform Reference · v1.2 · 38 Domains · with Use Cases</div>
+    </div>
+  </div>
+  <div class="hdr-stats">
+    <div class="stat-pill"><b>38</b> domains</div>
+    <div class="stat-pill"><b>558</b> sub-capabilities</div>
+    <div class="stat-pill"><b>340</b> integrations</div>
+    <div class="stat-pill"><b>355</b> global items</div>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="sidebar">
+    <div class="sb-top">Capability Groups</div>
+    <div class="sb-search"><input type="text" id="search-input" placeholder="Search all capabilities…" oninput="handleSearch(this.value)"></div>
+    <div id="sidebar-nav"></div>
+  </nav>
+  <main class="content" id="main-content"></main>
+</div>
+
+<!-- Load capability data from external JS file (works on local file:// and any server) -->
+<!-- To modify capabilities, edit ccaas_capabilities.js — the CCAAS_DATA variable inside it -->
+<script src="ccaas_capabilities.js"></script>
+
+<script>
+// CCAAS_DATA is loaded from ccaas_capabilities.js via the script tag above
+let GROUPS = (typeof CCAAS_DATA !== 'undefined') ? CCAAS_DATA : [];
+let activeGroup = 0;
+let searchQuery = '';
+
+function initApp() {
+  if (!GROUPS || GROUPS.length === 0) {
+    document.getElementById('main-content').innerHTML = `
+      <div class="no-results">
+        <p>⚠️ Could not load capability data.</p>
+        <p style="margin-top:8px;font-size:12px;color:var(--muted)">
+          Ensure <code>ccaas_capabilities.js</code> is in the same folder as this HTML file.
+        </p>
+      </div>`;
+    return;
+  }
+  renderSidebar();
+  renderGroup(0);
+  updateStats();
+}
+
+function updateStats() {
+  const totalDomains = GROUPS.reduce((a,g) => a + g.domains.length, 0);
+  const totalSub = GROUPS.reduce((a,g) => g.domains.reduce((b,d) => b + d.sub.length, a), 0);
+  const totalInt = GROUPS.reduce((a,g) => g.domains.reduce((b,d) => b + d.int.length, a), 0);
+  const totalGlo = GROUPS.reduce((a,g) => g.domains.reduce((b,d) => b + d.glo.length, a), 0);
+  
+  const pills = document.querySelectorAll('.stat-pill');
+  if (pills.length >= 5) {
+    pills[0].innerHTML = `<b>${totalDomains}</b> domains`;
+    pills[1].innerHTML = `<b>${totalDomains}</b> use cases`;
+    pills[2].innerHTML = `<b>${totalSub}</b> sub-capabilities`;
+    pills[3].innerHTML = `<b>${totalInt}</b> integrations`;
+    pills[4].innerHTML = `<b>${totalGlo}</b> global items`;
+  }
+}
+
+function getSubName(sub) {
+  return typeof sub === 'string' ? sub : sub.name;
+}
+
+function getSubDef(sub) {
+  return typeof sub === 'object' ? (sub.definition || '') : '';
+}
+
+function getSubUC(sub) {
+  return typeof sub === 'object' ? (sub.usecase || '') : '';
+}
+
+function renderSubItem(sub, highlighted) {
+  const name = highlighted || getSubName(sub);
+  const def = getSubDef(sub);
+  const uc = getSubUC(sub);
+  const hasDetail = def || uc;
+  
+  return `<div class="item item-sub" ${hasDetail ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
+    <span class="sub-name">${name}</span>
+    ${hasDetail ? '<span class="expand-hint">▾</span>' : ''}
+    ${hasDetail ? `<div class="sub-detail">
+      ${def ? `<div class="sub-def-label">Definition</div><div class="sub-def-text">${def}</div>` : ''}
+      ${uc ? `<div class="sub-uc-label">Use Case</div><div class="sub-uc-text">${uc}</div>` : ''}
+    </div>` : ''}
+  </div>`;
+}
+
+function renderSidebar() {
+  const nav = document.getElementById('sidebar-nav');
+  nav.innerHTML = GROUPS.map((g, i) => `
+    <button class="grp-btn ${i === activeGroup && !searchQuery ? 'active' : ''}" onclick="setGroup(${i})">
+      <span class="grp-icon">${g.icon}</span>
+      <span>${g.label}</span>
+      <span class="grp-count">${g.domains.length}</span>
+    </button>
+  `).join('');
+}
+
+function domainCardHTML(d, di, gi, idPrefix) {
+  return `
+    <div class="domain-card" id="${idPrefix}-${gi}-${di}">
+      <div class="domain-head" onclick="toggleDomain('${idPrefix}-${gi}-${di}')">
+        <div class="domain-num">${String(di+1).padStart(2,'0')}</div>
+        <div class="domain-info">
+          <div class="domain-title">${d.title}</div>
+          <div class="domain-cat">${d.category}</div>
+          <div class="domain-badges">
+            <span class="badge badge-sub">${d.sub.length} sub-caps</span>
+            <span class="badge badge-int">${d.int.length} integrations</span>
+            <span class="badge badge-glo">${d.glo.length} global</span>
+            <span class="badge badge-uc">use case ↓</span>
+          </div>
+        </div>
+        <div class="domain-toggle">▾</div>
+      </div>
+      <div class="domain-body">
+        <div class="usecase-banner">
+          <span class="uc-label">Use case</span>
+          <div class="uc-divider"></div>
+          <span class="uc-text">${d.usecase}</span>
+        </div>
+        <div class="domain-cols">
+          <div class="domain-col">
+            <div class="col-title ct-sub">Sub-Capabilities & Features</div>
+            <div class="item-list">${d.sub.map(x => renderSubItem(x)).join('')}</div>
+          </div>
+          <div class="domain-col">
+            <div class="col-title ct-int">System Integrations</div>
+            <div class="item-list">${d.int.map(x=>`<div class="item item-int">${x}</div>`).join('')}</div>
+          </div>
+          <div class="domain-col">
+            <div class="col-title ct-glo">Global / Multi-Region</div>
+            <div class="item-list">${d.glo.map(x=>`<div class="item item-glo">${x}</div>`).join('')}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderGroup(gi) {
+  const g = GROUPS[gi];
+  const totalSub = g.domains.reduce((a,d)=>a+d.sub.length,0);
+  const totalInt = g.domains.reduce((a,d)=>a+d.int.length,0);
+  const totalGlo = g.domains.reduce((a,d)=>a+d.glo.length,0);
+
+  document.getElementById('main-content').innerHTML = `
+    <div class="grp-header">
+      <div class="grp-icon-lg">${g.icon}</div>
+      <div>
+        <div class="grp-title">${g.label}</div>
+        <div class="grp-desc">${g.desc}</div>
+      </div>
+      <div class="grp-meta">
+        <div class="grp-meta-num">${g.domains.length}</div>
+        <div class="grp-meta-label">domains</div>
+        <div class="grp-meta-detail">${totalSub} sub-caps · ${totalInt} int · ${totalGlo} glo</div>
+      </div>
+    </div>
+    <div class="domains-list">${g.domains.map((d,di)=>domainCardHTML(d,di,gi,'dc')).join('')}</div>
+    <div class="content-footer">
+      <span>CCaaS Global Capability Map v2.0 — with Definitions & Use Cases</span>
+      <span>${g.label} · ${g.domains.length} domains · ${totalSub+totalInt+totalGlo} total items</span>
+    </div>`;
+}
+
+function toggleDomain(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function setGroup(i) {
+  activeGroup = i;
+  searchQuery = '';
+  document.getElementById('search-input').value = '';
+  renderSidebar();
+  renderGroup(i);
+}
+
+function handleSearch(q) {
+  searchQuery = q.trim().toLowerCase();
+  if (!searchQuery) { renderSidebar(); renderGroup(activeGroup); return; }
+  renderSearchResults(searchQuery);
+}
+
+function highlight(text, q) {
+  const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re,'<mark>$1</mark>');
+}
+
+function renderSearchResults(q) {
+  const results = [];
+  GROUPS.forEach((g, gi) => {
+    g.domains.forEach((d, di) => {
+      const inTitle = d.title.toLowerCase().includes(q);
+      const inCat = d.category.toLowerCase().includes(q);
+      const inUC = d.usecase.toLowerCase().includes(q);
+      const subMatches = d.sub.filter(x => getSubName(x).toLowerCase().includes(q) || getSubDef(x).toLowerCase().includes(q) || getSubUC(x).toLowerCase().includes(q)).length;
+      const intMatches = d.int.filter(x=>x.toLowerCase().includes(q)).length;
+      const gloMatches = d.glo.filter(x=>x.toLowerCase().includes(q)).length;
+      if (inTitle||inCat||inUC||subMatches||intMatches||gloMatches) {
+        results.push({g,gi,d,di,subMatches,intMatches,gloMatches,inUC});
+      }
+    });
+  });
+
+  document.getElementById('main-content').innerHTML = `
+    <div class="grp-header">
+      <div class="grp-icon-lg">🔍</div>
+      <div>
+        <div class="grp-title">Results for "${q}"</div>
+        <div class="grp-desc">${results.length} domain${results.length===1?'':'s'} matched across all capability groups.</div>
+      </div>
+    </div>
+    ${results.length===0 ? '<div class="no-results">No capabilities matched your search.</div>' : `
+    <div class="domains-list">
+      ${results.map(r=>`
+        <div class="domain-card open" id="sr-${r.gi}-${r.di}">
+          <div class="domain-head" onclick="this.closest('.domain-card').classList.toggle('open')">
+            <div class="domain-num" style="background:var(--bright-blue)">${r.g.icon}</div>
+            <div class="domain-info">
+              <div class="domain-title">${highlight(r.d.title,q)}</div>
+              <div class="domain-cat">${r.g.label} · ${highlight(r.d.category,q)}</div>
+              <div class="domain-badges">
+                <span class="badge badge-sub">${r.d.sub.length} sub-caps${r.subMatches?` · <b>${r.subMatches} match</b>`:''}</span>
+                <span class="badge badge-int">${r.d.int.length} int${r.intMatches?` · <b>${r.intMatches} match</b>`:''}</span>
+                <span class="badge badge-glo">${r.d.glo.length} glo${r.gloMatches?` · <b>${r.gloMatches} match</b>`:''}</span>
+                ${r.inUC?'<span class="badge badge-uc">use case match</span>':''}
+              </div>
+            </div>
+            <div class="domain-toggle">▾</div>
+          </div>
+          <div class="domain-body">
+            <div class="usecase-banner">
+              <span class="uc-label">Use case</span>
+              <div class="uc-divider"></div>
+              <span class="uc-text">${highlight(r.d.usecase,q)}</span>
+            </div>
+            <div class="domain-cols">
+              <div class="domain-col">
+                <div class="col-title ct-sub">Sub-Capabilities</div>
+                <div class="item-list">${r.d.sub.map(x => {
+                  const nm = getSubName(x);
+                  const matched = nm.toLowerCase().includes(q) || getSubDef(x).toLowerCase().includes(q) || getSubUC(x).toLowerCase().includes(q);
+                  return `<div class="item item-sub${matched ? ' expanded' : ''}" style="${matched ? '' : 'opacity:0.4'}" ${getSubDef(x) || getSubUC(x) ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
+                    <span class="sub-name">${highlight(nm,q)}</span>
+                    ${getSubDef(x) || getSubUC(x) ? '<span class="expand-hint">▾</span>' : ''}
+                    ${getSubDef(x) || getSubUC(x) ? `<div class="sub-detail">
+                      ${getSubDef(x) ? `<div class="sub-def-label">Definition</div><div class="sub-def-text">${highlight(getSubDef(x),q)}</div>` : ''}
+                      ${getSubUC(x) ? `<div class="sub-uc-label">Use Case</div><div class="sub-uc-text">${highlight(getSubUC(x),q)}</div>` : ''}
+                    </div>` : ''}
+                  </div>`;
+                }).join('')}</div>
+              </div>
+              <div class="domain-col">
+                <div class="col-title ct-int">Integrations</div>
+                <div class="item-list">${r.d.int.map(x=>`<div class="item item-int" style="${x.toLowerCase().includes(q)?'':'opacity:0.4'}">${highlight(x,q)}</div>`).join('')}</div>
+              </div>
+              <div class="domain-col">
+                <div class="col-title ct-glo">Global / Multi-Region</div>
+                <div class="item-list">${r.d.glo.map(x=>`<div class="item item-glo" style="${x.toLowerCase().includes(q)?'':'opacity:0.4'}">${highlight(x,q)}</div>`).join('')}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>`}
+    <div class="content-footer"><span>CCaaS Global Capability Map v2.0</span><span>${results.length} results for "${q}"</span></div>`;
+}
+
+// Initialize
+initApp();
+</script>
+</body>
+</html>
