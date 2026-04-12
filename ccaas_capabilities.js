@@ -1697,6 +1697,213 @@ const CCAAS_DATA = [
           "Crisis response protocols: the stakeholders, approval chains, and regulatory notification requirements in a social media crisis differ by country and by sector",
           "Tax and data sovereignty: social data collected and processed globally may need to be partitioned per jurisdiction to comply with local data laws"
         ]
+      },
+      {
+        "title": "General Servicing for Consumer",
+        "category": "Customer Operations | Personal Card & Small Business Servicing",
+        "usecase": "A personal card member calls about a billing query; the agent uses the servicing desktop to view the card member's account, transaction history, and recent disputes — resolving the issue in a single interaction without transferring to another team.",
+        "sub": [
+          {
+            "name": "Personal card account enquiry and maintenance (balance, statement, payment due date, direct debit setup)",
+            "definition": "The organisational capability responsible for personal card account enquiry and maintenance within the contact centre environment. Within the Customer Interaction pillar, this sub-capability enables agents to serve card members holding personal cards by providing real-time access to account details, balances, statements, and payment schedules.",
+            "usecase": "A card member calls to check their statement balance and update their direct debit date; the agent accesses the account in real time, confirms the current balance, and processes the direct debit change — completing the request in under 3 minutes."
+          },
+          {
+            "name": "Small business card servicing (spend management, supplementary cards, employee card controls)",
+            "definition": "The organisational capability responsible for small business card servicing within the contact centre environment. This capability enables agents to assist small business card members with spend management, supplementary card issuance, employee card controls, and business-specific account features.",
+            "usecase": "A small business owner calls to add a supplementary card for a new employee and set a monthly spend limit; the agent provisions the card, configures the spending controls, and confirms the details — all within a single call."
+          },
+          {
+            "name": "Transaction dispute and chargeback initiation for consumer cards",
+            "definition": "A configurable platform capability that enables agents to initiate and manage transaction disputes and chargebacks for personal and small business card members. This includes capturing dispute details, applying reason codes, and triggering the investigation workflow.",
+            "usecase": "A card member disputes an unrecognised transaction on their personal card; the agent captures the dispute details, assigns the appropriate reason code, issues a provisional credit, and initiates the chargeback process — providing the card member with a case reference and expected resolution timeline."
+          },
+          {
+            "name": "Card replacement, activation, and PIN management for consumer cards",
+            "definition": "An integrated function within the CCaaS ecosystem that enables agents to manage card lifecycle events for personal and small business card members, including lost/stolen card replacement, new card activation, and PIN resets.",
+            "usecase": "A card member reports their personal card as lost; the agent immediately blocks the card, orders a replacement, and offers to set up a digital card for immediate use — completing the process in under 5 minutes."
+          },
+          {
+            "name": "Reward points enquiry, redemption, and programme support for consumer cards",
+            "definition": "The operational capability that enables agents to assist personal and small business card members with loyalty and rewards programme queries, including points balance enquiries, redemption options, and programme benefits explanation.",
+            "usecase": "A card member calls to redeem reward points for a flight booking; the agent checks the points balance, walks the member through available redemption options, and processes the transfer to the airline loyalty programme."
+          },
+          {
+            "name": "Consumer card fee and interest enquiry management",
+            "definition": "A structured capability that enables agents to explain and manage fee structures, interest rate queries, annual fee waivers, and payment plan options for personal and small business card members.",
+            "usecase": "A personal card member queries an unexpected annual fee; the agent explains the fee structure, checks eligibility for a waiver based on the member's tenure and spend history, and applies the waiver — retaining the card member."
+          }
+        ],
+        "int": [
+          "CRM – card member profile, account history, and interaction context for personalised servicing",
+          "CCaaS / Contact Centre Platform – inbound call routing to consumer servicing queues based on card type and member segment",
+          "Card Management System – real-time account data, card lifecycle operations, and transaction details",
+          "Disputes & Chargebacks Platform – dispute initiation, status tracking, and resolution workflow",
+          "Rewards & Loyalty Platform – points balance, redemption processing, and programme rules engine",
+          "Knowledge Management – guided procedures for consumer card servicing scenarios"
+        ],
+        "glo": [
+          "Consumer credit regulation varies by jurisdiction: agents must follow market-specific disclosure requirements when discussing fees, interest rates, and payment terms",
+          "Card scheme rules (Visa, Mastercard, Amex) differ by region for dispute timeframes and chargeback rights",
+          "Data protection: accessing and discussing card member account data must comply with local privacy regulations (GDPR, CCPA, etc.)",
+          "Small business card products may have different regulatory treatment than personal cards depending on the jurisdiction"
+        ]
+      },
+      {
+        "title": "General Servicing for Corporate Card",
+        "category": "Customer Operations | Corporate Card Member Servicing",
+        "usecase": "A corporate card programme administrator calls to query a batch of declined transactions for travelling employees; the agent accesses the corporate account hierarchy, identifies the spend policy triggering the declines, and adjusts the temporary limits with programme administrator approval — resolving the issue for 15 employees in one call.",
+        "sub": [
+          {
+            "name": "Corporate card account management (programme hierarchy, account structure, billing arrangements)",
+            "definition": "The organisational capability responsible for corporate card account management within the contact centre environment. This capability enables agents to serve corporate card members by navigating complex programme hierarchies, managing account structures, and handling corporate billing arrangements.",
+            "usecase": "A corporate programme administrator calls to restructure the account hierarchy following a departmental reorganisation; the agent navigates the programme structure, reassigns cards to new cost centres, and updates the billing allocation — completing the restructure without requiring back-office intervention."
+          },
+          {
+            "name": "Corporate card spend policy enquiry and exception handling",
+            "definition": "A configurable platform capability that enables agents to explain corporate spend policies, handle policy exception requests, and manage temporary limit adjustments for corporate card members in coordination with programme administrators.",
+            "usecase": "A corporate card member calls because their card was declined at a hotel; the agent identifies the merchant category restriction in the corporate policy, contacts the programme administrator for approval, and processes a temporary exception — enabling the employee to complete their business travel booking."
+          },
+          {
+            "name": "Corporate expense reconciliation and statement support",
+            "definition": "An integrated function within the CCaaS ecosystem that enables agents to assist corporate card members and programme administrators with expense reconciliation queries, statement discrepancies, and integration with corporate expense management systems.",
+            "usecase": "A finance team member calls about missing transactions on the corporate statement that need to reconcile with their ERP system; the agent identifies the pending authorisations, explains the settlement timeline, and provides a detailed transaction extract for reconciliation."
+          },
+          {
+            "name": "Corporate card programme administrator support (user provisioning, policy changes, reporting access)",
+            "definition": "The operational capability that enables agents to provide dedicated support to corporate card programme administrators, including user provisioning, policy configuration changes, and access to programme-level reporting and analytics.",
+            "usecase": "A new programme administrator needs to be onboarded following a staff change; the agent provisions their access, walks them through the admin portal, configures their reporting permissions, and schedules a follow-up training call."
+          },
+          {
+            "name": "Corporate card member travel and emergency support",
+            "definition": "A structured capability that enables agents to provide enhanced support to corporate card members during business travel, including emergency card replacement, travel insurance queries, and concierge-style assistance.",
+            "usecase": "A corporate card member travelling abroad reports their card stolen; the agent immediately blocks the compromised card, arranges emergency card delivery to the member's hotel, and confirms travel insurance coverage — ensuring minimal disruption to the business trip."
+          },
+          {
+            "name": "Corporate liability and payment model management (individual bill, company bill, joint and several)",
+            "definition": "The organisational capability responsible for managing different corporate card liability models within the contact centre environment, including individual-bill, company-bill, and joint-and-several arrangements, and handling queries related to payment responsibilities.",
+            "usecase": "A corporate card member on an individual-bill programme calls confused about a payment demand; the agent explains the liability model, clarifies the payment responsibility, and sets up a payment arrangement — preventing the account from going into delinquency."
+          }
+        ],
+        "int": [
+          "CRM – corporate programme profiles, programme administrator contacts, and interaction history",
+          "CCaaS / Contact Centre Platform – dedicated routing for corporate card members and programme administrators with priority handling",
+          "Card Management System – corporate account hierarchy, spend controls, and card lifecycle management",
+          "Corporate Expense Management Systems (SAP Concur, Coupa, etc.) – reconciliation data and feed management",
+          "Programme Administration Portal – administrator self-service and agent-assisted configuration",
+          "Knowledge Management – corporate card-specific procedures, policy guides, and escalation matrices"
+        ],
+        "glo": [
+          "Corporate card programmes span multiple jurisdictions; agents must understand which market's regulations apply to each card member",
+          "Corporate liability models differ by market: individual-bill vs. company-bill treatment has tax and regulatory implications that vary by country",
+          "Cross-border travel support requires awareness of local card acceptance, currency regulations, and emergency support logistics in each market",
+          "Corporate data handling: programme-level data may be subject to additional contractual and regulatory requirements beyond standard consumer data protection"
+        ]
+      },
+      {
+        "title": "Cross-Sell & Save (Retention)",
+        "category": "Customer Operations | Revenue Growth & Card Member Retention",
+        "usecase": "A card member calls to cancel their card due to the annual fee; the agent's desktop surfaces a real-time retention offer — a fee waiver plus a bonus rewards promotion — and the agent presents it naturally during the conversation, saving the card and increasing the member's engagement.",
+        "sub": [
+          {
+            "name": "Real-time retention offer engine (save offers triggered by cancellation intent signals)",
+            "definition": "The organisational capability responsible for delivering real-time retention offers when card members express intent to cancel or downgrade their card. The system detects cancellation signals during the interaction and surfaces personalised save offers to the agent based on the member's value, tenure, and product holding.",
+            "usecase": "A long-tenure card member calls to cancel their premium card citing the annual fee; the retention engine surfaces a tiered offer — first a fee waiver, then a bonus points promotion — and the agent successfully retains the member with the fee waiver, preserving £1,200 in annual revenue."
+          },
+          {
+            "name": "Cross-sell recommendation engine (next-best-product suggestions based on member profile and behaviour)",
+            "definition": "A configurable platform capability that provides agents with real-time cross-sell recommendations during servicing interactions. The engine analyses the card member's profile, spending patterns, product holdings, and life-stage indicators to suggest the most relevant additional products.",
+            "usecase": "During a routine balance enquiry call, the agent's desktop highlights that the card member has high travel spend but no travel insurance product; the agent offers the travel insurance add-on, and the member signs up — generating incremental revenue from a servicing interaction."
+          },
+          {
+            "name": "Product upgrade and downgrade path management",
+            "definition": "An integrated function within the CCaaS ecosystem that enables agents to manage card product upgrade and downgrade requests, presenting the benefits and trade-offs of each option while surfacing upgrade incentives or downgrade-prevention offers as appropriate.",
+            "usecase": "A card member wants to downgrade from a premium to a basic card; the agent presents a side-by-side comparison of benefits, highlights the value the member would lose relative to their spend pattern, and offers a reduced-fee retention deal — the member opts to stay on the premium product."
+          },
+          {
+            "name": "Save desk / retention specialist routing and escalation",
+            "definition": "The operational capability that provides dedicated routing and queue management for card members identified as at-risk of attrition. High-value or complex retention cases are escalated to specialist retention agents with enhanced offer authority and negotiation guidelines.",
+            "usecase": "A high-value card member insists on cancelling despite the first-line agent's save offer; the call is seamlessly transferred to a retention specialist who has authority to offer an enhanced package — the specialist saves the card with a tailored benefits bundle."
+          },
+          {
+            "name": "Cross-sell compliance and suitability checks",
+            "definition": "A structured capability that ensures all cross-sell and retention offers comply with regulatory requirements, including suitability assessments, cooling-off period disclosures, and fair treatment of customers, particularly for regulated financial products.",
+            "usecase": "An agent presents a credit limit increase offer during a servicing call; the system automatically runs an affordability check and confirms the member meets the lending criteria before the agent can proceed — ensuring regulatory compliance and responsible lending."
+          },
+          {
+            "name": "Retention and cross-sell performance tracking and analytics",
+            "definition": "The end-to-end process and technology that governs tracking and reporting of retention save rates, cross-sell conversion rates, offer acceptance rates, and revenue impact across all card member interactions.",
+            "usecase": "The contact centre manager reviews the weekly retention dashboard showing a 68% save rate on cancellation calls, with fee waivers accounting for 45% of saves and product switches for 23%; the data informs next quarter's retention offer strategy."
+          }
+        ],
+        "int": [
+          "CRM – member value scoring, product holdings, and interaction history to power offer relevance",
+          "CCaaS / Contact Centre Platform – intent detection for cancellation signals and routing to save desk queues",
+          "Decisioning Engine / Next-Best-Action – real-time offer selection based on member profile and business rules",
+          "Product Catalogue – current product features, pricing, and eligibility rules for cross-sell and upgrade offers",
+          "Compliance Engine – suitability checks, affordability assessments, and regulatory disclosure management",
+          "Reporting & Analytics – retention rates, cross-sell conversion, offer acceptance, and revenue attribution"
+        ],
+        "glo": [
+          "Cross-sell and retention practices are regulated differently by jurisdiction: some markets restrict unsolicited product offers during servicing calls",
+          "Cooling-off periods for financial products vary by country and product type — agents must disclose the applicable cancellation rights",
+          "Suitability and affordability requirements: regulated markets (FCA in UK, CFPB in USA) require documented suitability assessments before offering credit products",
+          "Incentive structures for retention and cross-sell must comply with local conduct regulations to avoid mis-selling risks",
+          "Vulnerable customer considerations: retention and cross-sell offers must account for vulnerability indicators and adjust approach accordingly"
+        ]
+      },
+      {
+        "title": "Acquisition (Inbound Campaign-Based)",
+        "category": "Customer Operations | New Customer Acquisition & Campaign Fulfilment",
+        "usecase": "A prospective customer calls in response to a direct mail campaign offering a welcome bonus on a new card; the agent's desktop automatically identifies the campaign code from the IVR input, surfaces the specific offer details and eligibility criteria, and guides the prospect through the application — completing the acquisition in a single call.",
+        "sub": [
+          {
+            "name": "Campaign-driven inbound call handling (campaign recognition, offer lookup, eligibility verification)",
+            "definition": "The organisational capability responsible for handling inbound calls from prospects responding to acquisition campaigns. The system recognises the campaign source (IVR input, DNIS, or caller data), retrieves the specific offer details, and enables the agent to verify prospect eligibility in real time.",
+            "usecase": "A prospect calls after receiving a targeted email campaign; the IVR captures the campaign code, and the agent's screen immediately displays the offer details (welcome bonus, annual fee waiver for year one) and the prospect's pre-qualification status — enabling a seamless application experience."
+          },
+          {
+            "name": "New card application capture and real-time decisioning",
+            "definition": "A configurable platform capability that enables agents to capture new card applications during inbound calls, submit them for real-time credit decisioning, and communicate the outcome to the prospect within the same interaction. The capability includes guided application forms, data validation, and integration with credit bureaux.",
+            "usecase": "A prospect wants to apply for a card during the call; the agent captures their details using a guided application form, submits for real-time decisioning, and receives an approval within 60 seconds — the prospect is welcomed as a new card member before the call ends."
+          },
+          {
+            "name": "Campaign management and offer configuration (active campaigns, offer terms, channel attribution)",
+            "definition": "An integrated function within the CCaaS ecosystem that manages the configuration and lifecycle of acquisition campaigns, including active campaign catalogues, offer terms, expiry dates, channel attribution, and agent-facing campaign briefing materials.",
+            "usecase": "The marketing team launches a new acquisition campaign targeting frequent travellers; the campaign is configured in the system with offer terms, eligibility rules, and expiry dates — agents are automatically briefed via their desktop, and all applications are attributed to the correct campaign for ROI measurement."
+          },
+          {
+            "name": "Prospect data capture and lead management (for non-converted calls)",
+            "definition": "The operational capability that enables agents to capture prospect information from inbound acquisition calls that do not convert to an immediate application, creating leads for follow-up nurturing through outbound campaigns or digital channels.",
+            "usecase": "A prospect calls interested in a card offer but wants time to decide; the agent captures their details and preferences, creates a warm lead in the CRM, and schedules an automated follow-up email with the offer details — 30% of these leads convert within 14 days."
+          },
+          {
+            "name": "Acquisition compliance and regulatory disclosure management",
+            "definition": "A structured capability that ensures all acquisition interactions comply with regulatory requirements, including mandatory product disclosures, terms and conditions communication, credit check consent, and recording of the prospect's informed agreement.",
+            "usecase": "During an acquisition call, the agent is guided through mandatory disclosures — APR, fees, credit check consent — with the system recording acknowledgement at each step; the compliance audit trail is automatically attached to the application record."
+          },
+          {
+            "name": "Acquisition performance analytics (campaign conversion rates, cost per acquisition, agent effectiveness)",
+            "definition": "The end-to-end process and technology that governs tracking and reporting of acquisition campaign performance, including inbound call volumes by campaign, conversion rates, cost per acquisition, agent-level effectiveness, and campaign ROI.",
+            "usecase": "The acquisition team reviews the monthly dashboard showing that the direct mail campaign achieved a 12% call-to-application conversion rate at £45 cost per acquisition, outperforming the digital campaign at 8% and £62 — informing budget allocation for the next quarter."
+          }
+        ],
+        "int": [
+          "CRM – prospect records, lead management, and campaign attribution for acquisition pipeline tracking",
+          "CCaaS / Contact Centre Platform – campaign-based IVR routing, DNIS recognition, and dedicated acquisition queue management",
+          "Credit Decisioning Engine – real-time application scoring, credit bureau integration, and automated approve/refer/decline workflows",
+          "Campaign Management Platform – active campaign catalogue, offer configuration, and channel attribution",
+          "Card Management System – new account provisioning and instant card issuance upon approval",
+          "Compliance Engine – regulatory disclosure management, consent capture, and audit trail generation",
+          "Reporting & Analytics – campaign performance, conversion funnels, cost per acquisition, and agent effectiveness metrics"
+        ],
+        "glo": [
+          "Credit application regulations vary by jurisdiction: mandatory disclosures, cooling-off periods, and credit check consent requirements differ by market",
+          "Unsolicited credit offers are restricted or banned in some jurisdictions — agents must verify that the prospect is responding to a legitimate campaign before proceeding",
+          "Anti-money laundering (AML) and Know Your Customer (KYC) requirements for new account opening vary by country and must be integrated into the application workflow",
+          "Telemarketing regulations: inbound acquisition calls triggered by outbound campaigns may still be subject to telemarketing consent rules in some jurisdictions",
+          "Cross-border acquisition: prospects responding to campaigns in one market but residing in another may trigger different regulatory requirements and product eligibility rules"
+        ]
       }
     ]
   },
